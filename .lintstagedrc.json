@@ -1,0 +1,6 @@
+{
+	"*.{js,ts,jsx}": [
+		"biome check --write",
+		"yarn test --verbose --findRelatedTests --passWithNoTests --forceExit"
+	]
+}
