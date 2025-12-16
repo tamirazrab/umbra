@@ -1,12 +1,17 @@
 import { Injectable, Logger } from "@nestjs/common";
 
-import { TaskStatus } from "@/core/task/entity/task";
-import type { IEventAdapter } from "@/libs/event/adapter";
+import { type TaskEntity, TaskStatus, TaskType } from "@/core/task/entity/task";
+// biome-ignore lint/style/useImportType: used as Nest DI tokens
+import { IEventAdapter } from "@/libs/event/adapter";
 import { EventNameEnum } from "@/libs/event/types";
-import type { ILLMProvider } from "@/libs/llm/adapter";
+// biome-ignore lint/style/useImportType: used as Nest DI tokens
+import { ILLMProvider } from "@/libs/llm/adapter";
+import type { FlowId } from "@/utils/types";
 
-import type { IExecutorRepository } from "./adapter";
-import type { QueueService } from "./queue.service";
+// biome-ignore lint/style/useImportType: used as Nest DI tokens
+import { IExecutorRepository } from "./adapter";
+// biome-ignore lint/style/useImportType: used as Nest DI tokens
+import { QueueService } from "./queue.service";
 
 @Injectable()
 export class ProcessorService {
@@ -19,7 +24,7 @@ export class ProcessorService {
 		private eventService: IEventAdapter,
 	) {}
 
-	async startProcessing(flowId: number): Promise<void> {
+	async startProcessing(flowId: FlowId): Promise<void> {
 		this.queueService.addQueue(flowId);
 		this.logger.log(`Starting task processor for flow ${flowId}`);
 
@@ -27,7 +32,7 @@ export class ProcessorService {
 		setImmediate(() => this.processQueue(flowId));
 	}
 
-	private async processQueue(flowId: number): Promise<void> {
+	private async processQueue(flowId: FlowId): Promise<void> {
 		while (!this.queueService.shouldStop(flowId)) {
 			const task = this.queueService.getNextTask(flowId);
 
@@ -58,9 +63,8 @@ export class ProcessorService {
 
 					const nextTask = await this.executorRepository.createTask({
 						flowId,
-						// eslint-disable-next-line @typescript-eslint/no-explicit-any
-						type: (nextTaskData.type || "ask") as any,
-						message: nextTaskData.message || "",
+						type: (nextTaskData.type ?? TaskType.ASK) as TaskEntity["type"],
+						message: nextTaskData.message ?? "",
 						args: nextTaskData.args,
 					});
 
@@ -78,8 +82,9 @@ export class ProcessorService {
 		this.logger.log(`Stopped task processor for flow ${flowId}`);
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	private async processTask(task: any): Promise<void> {
+	private async processTask(
+		task: TaskEntity & { flowId?: FlowId | null },
+	): Promise<void> {
 		// Mark as in progress
 		await this.executorRepository.updateTaskStatus(
 			task.id,
@@ -87,6 +92,8 @@ export class ProcessorService {
 		);
 
 		// Simulate processing based on task type
+		const args = (task.args ?? {}) as Record<string, unknown>;
+
 		switch (task.type) {
 			case "input":
 				// Input tasks are already complete
@@ -99,8 +106,9 @@ export class ProcessorService {
 			case "terminal": {
 				// Simplified: just mark as finished
 				// Real implementation would execute command in Docker container
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				const terminalResult = `Command executed: ${(task.args as any).command}`;
+				const command =
+					typeof args.command === "string" ? args.command : "unknown";
+				const terminalResult = `Command executed: ${command}`;
 
 				// Send terminal output via Event
 				if (task.flowId) {
@@ -119,16 +127,16 @@ export class ProcessorService {
 
 			case "browser": {
 				// Simplified: mark as finished
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				const browserResult = `Browsed: ${(task.args as any).url}`;
+				const url = typeof args.url === "string" ? args.url : "unknown";
+				const browserResult = `Browsed: ${url}`;
 				await this.executorRepository.updateTaskResults(task.id, browserResult);
 				break;
 			}
 
 			case "code": {
 				// Simplified: mark as finished
-				// eslint-disable-next-line @typescript-eslint/no-explicit-any
-				const codeResult = `Modified file: ${(task.args as any).file}`;
+				const file = typeof args.file === "string" ? args.file : "unknown";
+				const codeResult = `Modified file: ${file}`;
 				await this.executorRepository.updateTaskResults(task.id, codeResult);
 				break;
 			}
@@ -179,7 +187,7 @@ export class ProcessorService {
 		}
 	}
 
-	async stopProcessing(flowId: number): Promise<void> {
+	async stopProcessing(flowId: FlowId): Promise<void> {
 		this.queueService.cleanQueue(flowId);
 		this.logger.log(`Stopped processing for flow ${flowId}`);
 	}

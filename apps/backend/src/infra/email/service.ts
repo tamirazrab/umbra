@@ -3,14 +3,14 @@ import path from "node:path";
 import { Injectable } from "@nestjs/common";
 import { OnEvent } from "@nestjs/event-emitter";
 import handlebars from "handlebars";
-import type { Transporter } from "nodemailer";
-import type SMTPTransport from "nodemailer/lib/smtp-transport";
+import  { Transporter } from "nodemailer";
+import  SMTPTransport from "nodemailer/lib/smtp-transport";
 
 import { EventNameEnum } from "@/libs/event/types";
 
-import type { ILoggerAdapter } from "../logger";
-import type { ISecretsAdapter } from "../secrets";
-import type { IEmailAdapter } from "./adapter";
+import  { ILoggerAdapter } from "../logger";
+import  { ISecretsAdapter } from "../secrets";
+import  { IEmailAdapter } from "./adapter";
 
 export type SendEmailInput = {
 	subject: string;

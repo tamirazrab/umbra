@@ -1,14 +1,14 @@
 import https from "node:https";
-import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios";
+import axios, {  AxiosInstance,  AxiosRequestConfig } from "axios";
 import axiosBetterStacktrace from "axios-better-stacktrace";
 
 import { AxiosUtils } from "@/utils/axios";
-import type { TracingType } from "@/utils/request";
+import  { TracingType } from "@/utils/request";
 
-import type { ILoggerAdapter } from "../logger";
-import type { IHttpAdapter, IHttpBuilder } from "./adapter";
+import  { ILoggerAdapter } from "../logger";
+import  { IHttpAdapter, IHttpBuilder } from "./adapter";
 import { HttpBuilder } from "./http-builder"; // Importa a implementação concreta
-import type { HttpData } from "./types";
+import  { HttpData } from "./types";
 
 export class HttpService implements IHttpAdapter<AxiosInstance> {
 	public tracing!: Exclude<TracingType, "axios">;

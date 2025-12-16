@@ -1,7 +1,8 @@
 import type { ILoggerAdapter } from "@/infra/logger";
 import type { ApiTracingInput } from "@/utils/request";
 import type { IUsecase } from "@/utils/usecase";
-import { type Infer, InputValidator, ValidateSchema } from "@/utils/validator";
+import { ValidateSchema } from "@/utils/decorators";
+import { type Infer, InputValidator } from "@/utils/validator";
 
 import { LogEntity } from "../entity/log";
 import type { ILogRepository } from "../repository/log";

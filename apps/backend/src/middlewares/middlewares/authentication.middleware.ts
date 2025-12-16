@@ -1,11 +1,11 @@
 import { Injectable, type NestMiddleware } from "@nestjs/common";
 import { SpanStatusCode } from "@opentelemetry/api";
-import type { NextFunction, Request, Response } from "express";
+import  { NextFunction, Request, Response } from "express";
 
-import type { ICacheAdapter } from "@/infra/cache";
-import type { ILoggerAdapter } from "@/infra/logger";
-import type { ITokenAdapter } from "@/libs/token";
-import type { TracingType, UserRequest } from "@/utils/request";
+import  { ICacheAdapter } from "@/infra/cache";
+import  { ILoggerAdapter } from "@/infra/logger";
+import  { ITokenAdapter } from "@/libs/token";
+import  { TracingType, UserRequest } from "@/utils/request";
 import { UUIDUtils } from "@/utils/uuid";
 
 import { ApiUnauthorizedException } from "../../utils/exception";

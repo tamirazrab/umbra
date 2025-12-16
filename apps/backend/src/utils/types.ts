@@ -1,20 +1,28 @@
 import type { z } from "zod";
 
+// Centralized id aliases so we can switch numeric/string ids in one place.
+export type NumericId = number;
+export type UUID = string;
+export type FlowId = NumericId;
+export type TaskId = NumericId | UUID;
+export type UserId = NumericId | UUID;
+export type EntityId = FlowId | TaskId;
+
 type Equals<X, Y> =
 	(<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y ? 1 : 2
-		? true
-		: false;
+	? true
+	: false;
 
 type NonUndefined<T> = Exclude<T, undefined>;
 
 export type ZodInferSchema<T extends object> = {
 	[Key in keyof T]-?: Equals<T[Key], NonUndefined<T[Key]>> extends false
-		?
-				| z.ZodOptional<z.ZodType<NonNullable<T[Key]>>>
-				| z.core.$ZodPipe<z.ZodOptional<z.ZodType<unknown>>, z.ZodType<T[Key]>>
-		:
-				| z.ZodType<T[Key]>
-				| z.core.$ZodPipe<z.ZodType<unknown>, z.ZodType<T[Key]>>;
+	?
+	| z.ZodOptional<z.ZodType<NonNullable<T[Key]>>>
+	| z.core.$ZodPipe<z.ZodOptional<z.ZodType<unknown>>, z.ZodType<T[Key]>>
+	:
+	| z.ZodType<T[Key]>
+	| z.core.$ZodPipe<z.ZodType<unknown>, z.ZodType<T[Key]>>;
 };
 
 export type MakePartial<T> = {

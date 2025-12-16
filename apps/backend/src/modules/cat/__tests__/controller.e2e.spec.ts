@@ -1,19 +1,19 @@
 import { CatEntity } from "@/core/cat/entity/cat";
 import { ICatRepository } from "@/core/cat/repository/cat";
 import { ICacheAdapter } from "@/infra/cache";
-import type { RedisService } from "@/infra/cache/redis";
+import { RedisService } from "@/infra/cache/redis";
 import { ConnectionName } from "@/infra/database/enum";
 import {
   Cat,
-  type CatDocument,
+  CatDocument,
   CatSchema,
 } from "@/infra/database/mongo/schemas/cat";
 import { ILoggerAdapter } from "@/infra/logger";
 import { ITokenAdapter } from "@/libs/token";
-import type { INestApplication } from "@nestjs/common";
+import { INestApplication } from "@nestjs/common";
 import { Test } from "@nestjs/testing";
-import type mongoose from "mongoose";
-import type { PaginateModel, Schema } from "mongoose";
+import mongoose from "mongoose";
+import { PaginateModel, Schema } from "mongoose";
 import request from "supertest";
 import { TestMongoContainer, TestRedisContainer } from "test/containers";
 import { getUUID, mockFn, mockResolvedValue } from "test/mock";
@@ -21,7 +21,11 @@ import { afterAll, beforeAll, describe, it } from "vitest";
 import { CatModule } from "../module";
 import { CatRepository } from "../repository";
 
-describe("Cats", () => {
+const describeIfDocker = process.env.SKIP_DOCKER_TESTS === "true"
+	? describe.skip
+	: describe;
+
+describeIfDocker("Cats", () => {
   let app: INestApplication;
   let repository: ICatRepository;
 

@@ -1,11 +1,11 @@
 import { Injectable } from "@nestjs/common";
-import type { ConfigService } from "@nestjs/config";
+import  { ConfigService } from "@nestjs/config";
 import OpenAI from "openai";
 
-import type { TaskEntity } from "@/core/task/entity/task";
+import  { TaskEntity } from "@/core/task/entity/task";
 
-import type { ILLMProvider } from "../adapter";
-import type { NextTaskOptions } from "../types";
+import  { ILLMProvider } from "../adapter";
+import  { NextTaskOptions } from "../types";
 
 @Injectable()
 export class OpenAIProvider implements ILLMProvider {

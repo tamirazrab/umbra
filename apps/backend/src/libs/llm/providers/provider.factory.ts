@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import type { ConfigService } from "@nestjs/config";
+import  { ConfigService } from "@nestjs/config";
 
-import type { ILLMProvider } from "../adapter";
-import type { OpenAIProvider } from "./openai.provider";
+import  { ILLMProvider } from "../adapter";
+import  { OpenAIProvider } from "./openai.provider";
 
 @Injectable()
 export class ProviderFactory {

@@ -1,10 +1,10 @@
 import { Injectable } from "@nestjs/common";
-import type { TypeOrmModuleOptions } from "@nestjs/typeorm";
+import { TypeOrmModuleOptions } from "@nestjs/typeorm";
 
 import { name } from "../../../../package.json";
 
-import type { IDataBaseAdapter } from "../adapter";
-import type { ConnectionType } from "../types";
+import { IDataBaseAdapter } from "../adapter";
+import { ConnectionType } from "../types";
 
 @Injectable()
 export class PostgresService implements Partial<IDataBaseAdapter> {

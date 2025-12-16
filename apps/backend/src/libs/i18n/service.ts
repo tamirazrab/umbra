@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
-import { I18nContext, type I18nService as Service } from "nestjs-i18n";
+import { I18nContext, I18nService as Service } from "nestjs-i18n";
 
-import type { II18nAdapter } from "./adapter";
-import type { TranslateOptions } from "./types";
+import { II18nAdapter } from "./adapter";
+import { TranslateOptions } from "./types";
 
 @Injectable()
 export class I18nService implements II18nAdapter {

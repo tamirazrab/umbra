@@ -1,8 +1,8 @@
-import type { Axios, AxiosInstance, AxiosRequestConfig } from "axios";
+import  { Axios, AxiosInstance, AxiosRequestConfig } from "axios";
 
-import type { TracingType } from "@/utils/request";
+import  { TracingType } from "@/utils/request";
 
-import type { HttpData, HttpMethod, HttpResponse } from "./types";
+import  { HttpData, HttpMethod, HttpResponse } from "./types";
 
 export abstract class IHttpAdapter<T = Axios | AxiosInstance> {
 	abstract instance(): T;

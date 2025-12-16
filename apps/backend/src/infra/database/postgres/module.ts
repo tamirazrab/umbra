@@ -1,7 +1,7 @@
 import path from "node:path";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
-import { DataSource, type DataSourceOptions } from "typeorm";
+import { DataSource, DataSourceOptions } from "typeorm";
 import { SnakeNamingStrategy } from "typeorm-naming-strategies";
 
 import { ISecretsAdapter, SecretsModule } from "@/infra/secrets";

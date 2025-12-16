@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import type { ConfigService } from "@nestjs/config";
+import  { ConfigService } from "@nestjs/config";
 
-import type { ISecretsAdapter } from "./adapter";
+import  { ISecretsAdapter } from "./adapter";
 import { EnvEnum } from "./types";
 
 @Injectable()

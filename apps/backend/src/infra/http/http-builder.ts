@@ -1,6 +1,6 @@
-import type { AxiosInstance, AxiosRequestConfig } from "axios";
+import  { AxiosInstance, AxiosRequestConfig } from "axios";
 
-import type { CustomAxiosError } from "@/utils/axios";
+import  { CustomAxiosError } from "@/utils/axios";
 import {
 	ApiBadRequestException,
 	ApiConflictException,
@@ -10,11 +10,11 @@ import {
 	ApiTimeoutException,
 	ApiUnauthorizedException,
 	ApiUnprocessableEntityException,
-	type BaseException,
+	 BaseException,
 } from "@/utils/exception";
 
-import type { IHttpBuilder } from "./adapter";
-import type { HttpData, HttpMethod, HttpResponse } from "./types";
+import  { IHttpBuilder } from "./adapter";
+import  { HttpData, HttpMethod, HttpResponse } from "./types";
 
 export class HttpBuilder implements IHttpBuilder {
 	private requestConfig: {

@@ -1,4 +1,4 @@
-import type { IncomingMessage, ServerResponse } from "node:http";
+import  { IncomingMessage, ServerResponse } from "node:http";
 
 import {
 	Injectable,
@@ -7,14 +7,14 @@ import {
 } from "@nestjs/common";
 import { blue, gray, green, isColorSupported } from "colorette";
 import pino, {
-	type LevelWithSilent,
-	type LogDescriptor,
-	type Logger,
+	 LevelWithSilent,
+	 LogDescriptor,
+	 Logger,
 	multistream,
 } from "pino";
-import { type HttpLogger, type Options, pinoHttp } from "pino-http";
+import {  HttpLogger,  Options, pinoHttp } from "pino-http";
 import lokiTransport from "pino-loki";
-import pinoPretty, { type PrettyOptions } from "pino-pretty";
+import pinoPretty, {  PrettyOptions } from "pino-pretty";
 
 import { DateUtils } from "@/utils/date";
 import {
@@ -25,8 +25,8 @@ import {
 import { UUIDUtils } from "@/utils/uuid";
 
 import { name } from "../../../package.json";
-import type { ILoggerAdapter } from "./adapter";
-import type { ErrorType, MessageInputType } from "./types";
+import  { ILoggerAdapter } from "./adapter";
+import  { ErrorType, MessageInputType } from "./types";
 
 @Injectable({ scope: Scope.REQUEST })
 export class LoggerService implements ILoggerAdapter {

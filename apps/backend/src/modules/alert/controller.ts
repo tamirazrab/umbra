@@ -1,6 +1,6 @@
 import { Body, Controller, Post } from "@nestjs/common";
 
-import type { ILoggerAdapter } from "@/infra/logger";
+import { ILoggerAdapter } from "@/infra/logger";
 
 @Controller("alert")
 export class AlertController {

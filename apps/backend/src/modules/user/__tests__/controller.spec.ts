@@ -13,8 +13,13 @@ import { UserSchema } from "@/infra/database/postgres/schemas/user";
 
 import { UserModule } from "../module";
 import { UserRepository } from "../repository";
+import { afterAll, beforeAll, describe, it } from "vitest";
 
-describe("User", () => {
+const describeIfDocker = process.env.SKIP_DOCKER_TESTS === "true"
+	? describe.skip
+	: describe;
+
+describeIfDocker("User", () => {
 	let app: INestApplication;
 
 	const redisContainer = new TestRedisContainer();

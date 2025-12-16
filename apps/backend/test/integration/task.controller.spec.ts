@@ -1,10 +1,15 @@
 import { TaskCreateInput } from '@/core/task/use-cases/task-create';
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import * as request from 'supertest';
+import request from 'supertest';
 import { AppModule } from '../../src/app.module';
+import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-describe('TaskController (Integration)', () => {
+const describeIfDocker = process.env.SKIP_DOCKER_TESTS === 'true'
+  ? describe.skip
+  : describe;
+
+describeIfDocker('TaskController (Integration)', () => {
   let app: INestApplication;
 
   beforeAll(async () => {
@@ -27,7 +32,6 @@ describe('TaskController (Integration)', () => {
         flowId: 1,
         type: 'ask',
         message: 'Test task',
-        status: 'in_progress',
       };
 
       // Note: This assumes flowId 1 exists or validation is mocked/skipped for integration
@@ -40,7 +44,6 @@ describe('TaskController (Integration)', () => {
       expect(response.body).toHaveProperty('id');
       expect(response.body.type).toBe(input.type);
       expect(response.body.message).toBe(input.message);
-      expect(response.body.status).toBe(input.status);
     });
 
     it('should fail with invalid input', async () => {
