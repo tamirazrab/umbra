@@ -8,7 +8,7 @@ import { type Infer, InputValidator } from "@/utils/validator";
 import type { ITaskRepository } from "../repository/task";
 
 export const TaskDeleteSchema = InputValidator.object({
-	id: InputValidator.string().uuid(),
+	id: InputValidator.string(),
 });
 
 export class TaskDeleteUsecase implements IUsecase {

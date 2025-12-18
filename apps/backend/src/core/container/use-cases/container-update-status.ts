@@ -9,7 +9,7 @@ import { ContainerEntity, type ContainerStatus } from "../entity/container";
 import type { IContainerRepository } from "../repository/container";
 
 export const ContainerUpdateStatusSchema = InputValidator.object({
-	id: InputValidator.string().uuid(),
+	id: InputValidator.string(),
 	status: InputValidator.enum(["starting", "running", "stopped", "failed"]),
 });
 

@@ -5,7 +5,7 @@ import { z } from "zod";
 // =============================================================================
 
 export const IdSchema = z.number().int().positive();
-export const UuidSchema = z.string().uuid();
+export const UuidSchema = z.string();
 export const NameSchema = z.string().trim().min(1).max(255);
 export const EmailSchema = z.string().email();
 export const DateSchema = z.date().nullish();

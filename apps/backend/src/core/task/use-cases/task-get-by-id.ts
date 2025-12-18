@@ -7,7 +7,7 @@ import type { TaskEntity } from "../entity/task";
 import type { ITaskRepository } from "../repository/task";
 
 export const TaskGetByIdSchema = InputValidator.object({
-	id: InputValidator.string().uuid(),
+	id: InputValidator.string(),
 });
 
 export class TaskGetByIdUsecase implements IUsecase {

@@ -8,7 +8,7 @@ import { type Infer, InputValidator } from "@/utils/validator";
 import type { IContainerRepository } from "../repository/container";
 
 export const ContainerDeleteSchema = InputValidator.object({
-	id: InputValidator.string().uuid(),
+	id: InputValidator.string(),
 });
 
 export class ContainerDeleteUsecase implements IUsecase {

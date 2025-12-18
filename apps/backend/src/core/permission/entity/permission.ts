@@ -2,7 +2,7 @@ import { RoleEntity } from '@/core/role/entity/role';
 import { BaseEntity } from '@/utils/entity';
 import { Infer, InputValidator } from '@/utils/validator';
 
-const ID = InputValidator.string().uuid();
+const ID = InputValidator.string();
 const Name = InputValidator.string()
   .transform((value) => value.trim().replace(/ /g, '_').toLowerCase())
   .refine((val) => val.includes(':'), {

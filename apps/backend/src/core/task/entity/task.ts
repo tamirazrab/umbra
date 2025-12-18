@@ -1,7 +1,7 @@
 import { BaseEntity } from "@/utils/entity";
 import { type Infer, InputValidator } from "@/utils/validator";
 
-const ID = InputValidator.string().uuid();
+const ID = InputValidator.string();
 const Type = InputValidator.enum([
 	"input",
 	"terminal",
@@ -23,7 +23,7 @@ const Args = InputValidator.record(
 const Results = InputValidator.string().default("{}");
 const Message = InputValidator.string().nullish();
 const ToolCallId = InputValidator.string().nullish();
-const FlowId = InputValidator.number().int().positive().nullish();
+const FlowId = InputValidator.string().nullish();
 const CreatedAt = InputValidator.date().nullish();
 const UpdatedAt = InputValidator.date().nullish();
 
@@ -71,7 +71,7 @@ export class TaskEntity extends BaseEntity<TaskEntity>() {
 
 	toolCallId!: string | null;
 
-	flowId!: number | null;
+	flowId!: string | null;
 
 	constructor(entity: Task) {
 		super(TaskEntitySchema);

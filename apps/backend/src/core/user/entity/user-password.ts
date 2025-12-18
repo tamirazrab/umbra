@@ -3,7 +3,7 @@ import { BaseEntity } from '@/utils/entity';
 import { ApiBadRequestException } from '@/utils/exception';
 import { Infer, InputValidator } from '@/utils/validator';
 
-const ID = InputValidator.string().uuid();
+const ID = InputValidator.string();
 const Password = InputValidator.string();
 const CreatedAt = InputValidator.date().nullish();
 const UpdatedAt = InputValidator.date().nullish();

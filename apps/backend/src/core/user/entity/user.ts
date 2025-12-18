@@ -4,7 +4,7 @@ import { Infer, InputValidator } from '@/utils/validator';
 
 import { UserPasswordEntity, UserPasswordEntitySchema } from './user-password';
 
-const ID = InputValidator.string().uuid();
+const ID = InputValidator.string();
 const Email = InputValidator.string().email();
 const Name = InputValidator.string();
 const Password = UserPasswordEntitySchema;

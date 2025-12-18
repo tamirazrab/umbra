@@ -2,7 +2,7 @@ import { UserEntity, UserEntitySchema } from '@/core/user/entity/user';
 import { BaseEntity } from '@/utils/entity';
 import { Infer, InputValidator } from '@/utils/validator';
 
-const ID = InputValidator.string().uuid();
+const ID = InputValidator.string();
 const Token = InputValidator.string().min(1).trim();
 const User = UserEntitySchema;
 const CreatedAt = InputValidator.date().nullish();

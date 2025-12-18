@@ -9,7 +9,7 @@ import { ContainerEntity, ContainerEntitySchema } from "../entity/container";
 import type { IContainerRepository } from "../repository/container";
 
 export const ContainerUpdateSchema = InputValidator.object({
-	id: InputValidator.string().uuid(),
+	id: InputValidator.string(),
 }).merge(
 	ContainerEntitySchema.pick({
 		name: true,

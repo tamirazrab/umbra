@@ -1,7 +1,7 @@
 import { BaseEntity } from '@/utils/entity';
 import { Infer, InputValidator } from '@/utils/validator';
 
-const ID = InputValidator.string().uuid();
+const ID = InputValidator.string();
 const Name = InputValidator.string().trim().min(1).max(200);
 const Breed = InputValidator.string().trim().min(1).max(200);
 const Age = InputValidator.number().min(0).max(30);

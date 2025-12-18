@@ -9,7 +9,7 @@ import { TaskEntity, TaskEntitySchema } from "../entity/task";
 import type { ITaskRepository } from "../repository/task";
 
 export const TaskUpdateSchema = InputValidator.object({
-	id: InputValidator.string().uuid(),
+	id: InputValidator.string(),
 }).merge(
 	TaskEntitySchema.pick({
 		type: true,

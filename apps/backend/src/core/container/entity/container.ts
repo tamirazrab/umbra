@@ -1,7 +1,7 @@
 import { BaseEntity } from "@/utils/entity";
 import { type Infer, InputValidator } from "@/utils/validator";
 
-const ID = InputValidator.string().uuid();
+const ID = InputValidator.string();
 const Name = InputValidator.string().trim().min(1).max(255).nullish();
 const LocalId = InputValidator.string().trim().min(1).max(255).nullish();
 const Image = InputValidator.string().trim().min(1).max(255).nullish();

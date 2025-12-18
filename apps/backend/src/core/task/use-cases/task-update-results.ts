@@ -9,7 +9,7 @@ import { TaskEntity } from "../entity/task";
 import type { ITaskRepository } from "../repository/task";
 
 export const TaskUpdateResultsSchema = InputValidator.object({
-	id: InputValidator.string().uuid(),
+	id: InputValidator.string(),
 	results: InputValidator.string(),
 });
 
@@ -50,9 +50,9 @@ export class TaskUpdateResultsUsecase implements IUsecase {
 
 		const updated = await this.taskRepository.findById(input.id);
 
-    tracing.logEvent('task-results-updated', `task results updated by: ${user.email}`);
+		tracing.logEvent('task-results-updated', `task results updated by: ${user.email}`);
 
-    return new TaskEntity(updated as TaskEntity);
+		return new TaskEntity(updated as TaskEntity);
 	}
 }
 

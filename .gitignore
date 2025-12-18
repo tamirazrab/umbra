@@ -28,3 +28,7 @@ lerna-debug.log*
 .settings/
 *.sublime-workspace
 .turbo
+
+playwright-report/
+*.go
+test-results/
