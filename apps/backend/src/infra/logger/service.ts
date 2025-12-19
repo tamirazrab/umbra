@@ -272,7 +272,7 @@ export class LoggerService implements ILoggerAdapter {
 				value: () =>
 					new BaseException(
 						error.getResponse() as string,
-						[error.getStatus(), error.status].find(Boolean),
+						error.getStatus(),
 					).getResponse(),
 			},
 			{

@@ -1,9 +1,8 @@
 import { ConfigService } from "@nestjs/config";
 import { Test } from "@nestjs/testing";
-import { Task, TaskStatus as UmbraTaskStatus, TaskType as UmbraTaskType } from "@umbra/types";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
-import { TaskStatus, TaskType } from "@/core/task/entity/task";
+import { TaskEntity, TaskStatus, TaskType } from "@/core/task/entity/task";
 import { ITemplateService } from "@/libs/template/adapter";
 
 import { NextTaskOptions } from "../../types";
@@ -323,27 +322,27 @@ describe(OpenAIProvider.name, () => {
 
       const options: NextTaskOptions = {
         tasks: [
-          {
-            id: 1,
-            type: UmbraTaskType.Input,
+          new TaskEntity({
+            id: "9269248e-54cc-46f9-80c0-7029c989c0e3",
+            type: TaskType.INPUT,
             message: "User input",
             args: {},
-            results: {},
-            status: UmbraTaskStatus.Finished,
-            createdAt: new Date().toISOString(),
-            flowId: 1,
-          },
-          {
-            id: 2,
-            type: UmbraTaskType.Terminal,
+            results: "{}",
+            status: TaskStatus.FINISHED,
+            createdAt: new Date(),
+            flowId: "9269248e-54cc-46f9-80c0-7029c989c0e3",
+          }),
+          new TaskEntity({
+            id: "9269248e-54cc-46f9-80c0-7029c989c0e4",
+            type: TaskType.TERMINAL,
             message: "Running command",
             args: { command: "ls" },
-            results: { output: "file1.txt" },
-            status: UmbraTaskStatus.Finished,
-            createdAt: new Date().toISOString(),
-            flowId: 1,
-          },
-        ] as Task[],
+            results: JSON.stringify({ output: "file1.txt" }),
+            status: TaskStatus.FINISHED,
+            createdAt: new Date(),
+            flowId: "9269248e-54cc-46f9-80c0-7029c989c0e3",
+          }),
+        ],
         dockerImage: "node:latest",
       };
 

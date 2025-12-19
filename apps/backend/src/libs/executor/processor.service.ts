@@ -1,22 +1,23 @@
 import { Injectable, Logger } from "@nestjs/common";
-import  { SpanStatus } from "@opentelemetry/api";
+import { SpanStatus } from "@opentelemetry/api";
 
-import  { FlowStatus } from "@/core/flow/entity/flow";
+import { FlowStatus } from "@/core/flow/entity/flow";
 import { LogType } from "@/core/log/entity/log";
-import  { LogCreateUsecase } from "@/core/log/use-cases/log-create";
-import {  TaskEntity, TaskStatus, TaskType } from "@/core/task/entity/task";
+import { TaskEntity, TaskStatus, TaskType } from "@/core/task/entity/task";
 // biome-ignore lint/style/useImportType: used as Nest DI tokens
 import { IEventAdapter } from "@/libs/event/adapter";
 import { EventNameEnum } from "@/libs/event/types";
 // biome-ignore lint/style/useImportType: used as Nest DI tokens
 import { ILLMProvider } from "@/libs/llm/adapter";
-import  { ApiTracingInput } from "@/utils/request";
-import  { FlowId } from "@/utils/types";
+// biome-ignore lint/style/useImportType: used as Nest DI tokens
+import { ILogCreateAdapter } from "@/modules/log/adapter";
+import { ApiTracingInput } from "@/utils/request";
+import { FlowId } from "@/utils/types";
 
 // biome-ignore lint/style/useImportType: used as Nest DI tokens
 import { IExecutorRepository } from "./adapter";
-import  { BrowserService } from "./browser.service";
-import  { DockerService } from "./docker.service";
+import { BrowserService } from "./browser.service";
+import { DockerService } from "./docker.service";
 // biome-ignore lint/style/useImportType: used as Nest DI tokens
 import { QueueService } from "./queue.service";
 import { TerminalService } from "./terminal.service";
@@ -60,7 +61,7 @@ export class ProcessorService {
 		private dockerService: DockerService,
 		private terminalService: TerminalService,
 		private browserService: BrowserService,
-		private logCreateUsecase: LogCreateUsecase,
+		private logCreateUsecase: ILogCreateAdapter,
 	) {}
 
 	async startProcessing(flowId: FlowId, tracing: ApiTracingInput): Promise<void> {

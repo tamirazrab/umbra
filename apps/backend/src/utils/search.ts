@@ -37,7 +37,7 @@ export const SearchHttpSchema = InputValidator.string()
 		searchString.split(",").forEach((s) => {
 			const [field, value] = s.split(":");
 			const finalValue = value?.split("|").map((v) => v.trim());
-			if (finalValue.length > 1) {
+			if (finalValue?.length && finalValue?.length > 1) {
 				search[`${field}`] = value?.split("|").map((v) => v.trim());
 				return;
 			}

@@ -54,7 +54,7 @@ export class ExecutorRepository implements IExecutorRepository {
 
 	async getTasks(flowId: FlowId): Promise<TaskEntity[]> {
 		const result = await this.taskFindByFlowUsecase.execute({
-			flowId: Number(flowId),
+			flowId: String(flowId),
 		});
 		return result;
 	}
@@ -139,7 +139,7 @@ export class ExecutorRepository implements IExecutorRepository {
 
 	async getContainerById(id: number): Promise<ContainerEntity | null> {
 		try {
-			return await this.containerGetByIdUsecase.execute({ id });
+			return await this.containerGetByIdUsecase.execute({ id: String(id) });
 		} catch {
 			return null;
 		}

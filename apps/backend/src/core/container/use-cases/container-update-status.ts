@@ -36,7 +36,7 @@ export class ContainerUpdateStatusUsecase implements IUsecase {
 			updatedAt: new Date(),
 		});
 
-		const result = await this.containerRepository.updateOne(
+		await this.containerRepository.updateOne(
 			{ id: input.id },
 			updatedContainer,
 		);
@@ -51,7 +51,11 @@ export class ContainerUpdateStatusUsecase implements IUsecase {
 			`container: ${input.id} status: ${input.status}`,
 		);
 
-		return result;
+		const updated = await this.containerRepository.findOne({ id: input.id });
+		if (!updated) {
+			throw new ApiNotFoundException("containerNotFound");
+		}
+		return updated;
 	}
 }
 

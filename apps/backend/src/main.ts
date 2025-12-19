@@ -1,8 +1,5 @@
 import "./utils/tracing";
 
-import fs from "node:fs";
-import type { IncomingMessage, ServerResponse } from "node:http";
-import path from "node:path";
 import { RequestMethod, VersioningType } from "@nestjs/common";
 import { NestFactory } from "@nestjs/core";
 import bodyParser from "body-parser";
@@ -11,6 +8,9 @@ import compression from "compression";
 import type { NextFunction, Request, Response } from "express";
 import helmet from "helmet";
 import yaml from "js-yaml";
+import fs from "node:fs";
+import type { IncomingMessage, ServerResponse } from "node:http";
+import path from "node:path";
 import swagger from "swagger-ui-express";
 
 import { ILoggerAdapter } from "@/infra/logger/adapter";
@@ -52,9 +52,9 @@ async function bootstrap() {
 
 		const locale = [
 			languegeQuery,
-			(acceptLanguage || "").split(",")[0].split(";")[0],
+			(acceptLanguage || "").split(",")[0]?.split(";")[0],
 			"en",
-		].find(Boolean);
+		].find(Boolean) ?? "en";
 		await changeLanguage(locale as LocaleInput);
 		if (req.originalUrl && req.originalUrl.split("/").pop() === "favicon.ico") {
 			return res.sendStatus(204);

@@ -1,7 +1,7 @@
 import type { ILoggerAdapter } from "@/infra/logger";
+import { ValidateSchema } from "@/utils/decorators";
 import type { ApiTracingInput } from "@/utils/request";
 import type { IUsecase } from "@/utils/usecase";
-import { ValidateSchema } from "@/utils/decorators";
 import { type Infer, InputValidator } from "@/utils/validator";
 
 import { LogEntity } from "../entity/log";
@@ -35,15 +35,19 @@ export class LogCreateUsecase implements IUsecase {
       createdAt: new Date(),
     });
 
-    const log = await this.logRepository.create(entity);
+    const created = await this.logRepository.create(entity);
 
     this.loggerService.info({
       message: "log created successfully",
-      obj: { log },
+      obj: { logId: created.id },
     });
 
-    tracing.logEvent("log-created", `log: ${log.id} created`);
+    tracing.logEvent("log-created", `log: ${created.id} created`);
 
+    const log = await this.logRepository.findById(Number(created.id));
+    if (!log) {
+      throw new Error("Log not found after creation");
+    }
     return log;
   }
 }

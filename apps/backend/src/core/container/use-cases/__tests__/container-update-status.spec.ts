@@ -9,13 +9,13 @@ import {
 } from "@/utils/exception";
 import type { ZodExceptionIssue } from "@/utils/validator";
 
+import { expectZodError, getUUID, mockRejectedValue, mockResolvedValue, mockTracing, nameOf } from "@/test/mock";
 import { ContainerEntity, ContainerStatus } from "../../entity/container";
 import { IContainerRepository } from "../../repository/container";
 import {
 	type ContainerUpdateStatusInput,
 	ContainerUpdateStatusUsecase,
 } from "../container-update-status";
-import { expectZodError, mockTracing, nameOf, mockResolvedValue, mockRejectedValue, getUUID } from "@/test/mock";
 
 describe(ContainerUpdateStatusUsecase.name, () => {
 	let usecase: IContainerUpdateStatusAdapter;
@@ -58,7 +58,7 @@ describe(ContainerUpdateStatusUsecase.name, () => {
 	});
 
 	const existingContainer = new ContainerEntity({
-		id:	 getUUID(),
+		id: getUUID(),
 		name: "test-container",
 		localId: "docker-123",
 		image: "ubuntu:latest",
@@ -134,7 +134,7 @@ describe(ContainerUpdateStatusUsecase.name, () => {
 					mockTracing(),
 				),
 			(issues: ZodExceptionIssue[]) => {
-				expect(issues[0].path).toBe("status");
+				expect(issues[0]?.path).toBe("status");
 			},
 		);
 	});

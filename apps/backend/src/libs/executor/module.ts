@@ -16,6 +16,7 @@ import { TerminalService } from "./terminal.service";
 @Global()
 @Module({
 	imports: [
+		ConfigModule,
 		EventLibModule,
 		LLMModule,
 		LogModule,

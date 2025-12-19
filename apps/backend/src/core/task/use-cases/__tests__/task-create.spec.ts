@@ -5,10 +5,10 @@ import { ApiInternalServerException } from "@/utils/exception";
 import { Test } from "@nestjs/testing";
 import { beforeEach, describe, expect, test } from "vitest";
 
+import { getUUID, mockFn, mockRejectedValue, mockResolvedValue, mockTracing } from "test/mock";
 import { TaskEntity, TaskStatus, TaskType } from "../../entity/task";
 import { ITaskRepository } from "../../repository/task";
 import { type TaskCreateInput, TaskCreateUsecase } from "../task-create";
-import { mockFn, getUUID, mockResolvedValue, mockTracing, mockRejectedValue } from "test/mock";
 
 describe(TaskCreateUsecase.name, () => {
 	let usecase: TaskCreateUsecase;
@@ -87,7 +87,7 @@ describe(TaskCreateUsecase.name, () => {
 		results: "{}",
 		message: "Listing files",
 		toolCallId: "tool-123",
-		flowId: 1,
+		flowId: "9269248e-54cc-46f9-80c0-7029c989c0e3",
 		createdAt: new Date(),
 		updatedAt: new Date(),
 	});

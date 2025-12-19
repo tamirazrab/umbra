@@ -1,10 +1,10 @@
 import { Injectable, Logger } from "@nestjs/common";
 import type { SpanStatus } from "@opentelemetry/api";
 
-// biome-ignore lint/style/useImportType: used as Nest DI token
-import { LogCreateUsecase } from "@/core/log/use-cases/log-create";
 // biome-ignore lint/style/useImportType: used as Nest DI tokens
 import { IEventAdapter } from "@/libs/event/adapter";
+// biome-ignore lint/style/useImportType: used as Nest DI tokens
+import { ILogCreateAdapter } from "@/modules/log/adapter";
 import type { ApiTracingInput } from "@/utils/request";
 import type { FlowId } from "@/utils/types";
 
@@ -41,7 +41,7 @@ export class TerminalService {
 
   constructor(
     private dockerService: DockerService,
-    private logCreateUsecase: LogCreateUsecase,
+    private logCreateUsecase: ILogCreateAdapter,
     private eventService: IEventAdapter,
   ) {}
 

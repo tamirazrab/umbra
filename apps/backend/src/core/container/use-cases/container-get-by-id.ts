@@ -7,7 +7,7 @@ import type { ContainerEntity } from "../entity/container";
 import type { IContainerRepository } from "../repository/container";
 
 export const ContainerGetByIdSchema = InputValidator.object({
-	id: InputValidator.number().int().positive(),
+	id: InputValidator.string(),
 });
 
 export class ContainerGetByIdUsecase implements IUsecase {

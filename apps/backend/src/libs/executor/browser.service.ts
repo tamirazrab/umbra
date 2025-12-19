@@ -2,9 +2,11 @@ import { Injectable, Logger, OnModuleInit } from "@nestjs/common";
 import { type Browser, chromium } from "playwright";
 
 import { LogType } from "@/core/log/entity/log";
-import type { IEventAdapter } from "@/libs/event/adapter";
+// biome-ignore lint/style/useImportType: used as Nest DI tokens
+import { IEventAdapter } from "@/libs/event/adapter";
 import { EventNameEnum } from "@/libs/event/types";
-import type { ILogCreateAdapter } from "@/modules/log/adapter";
+// biome-ignore lint/style/useImportType: used as Nest DI tokens
+import { ILogCreateAdapter } from "@/modules/log/adapter";
 import type { ApiTracingInput } from "@/utils/request";
 import type { FlowId } from "@/utils/types";
 

@@ -37,7 +37,7 @@ export class FlowFinishUsecase implements IUsecase {
 			updatedAt: new Date(),
 		});
 
-		const result = await this.flowRepository.updateOne(
+		await this.flowRepository.updateOne(
 			{ id: input.id },
 			finishedFlow,
 		);
@@ -49,7 +49,11 @@ export class FlowFinishUsecase implements IUsecase {
 
 		tracing.logEvent("flow-finished", `flow: ${input.id} finished`);
 
-		return result;
+		const updated = await this.flowRepository.findOne({ id: input.id });
+		if (!updated) {
+			throw new ApiNotFoundException("flowNotFound");
+		}
+		return updated;
 	}
 }
 

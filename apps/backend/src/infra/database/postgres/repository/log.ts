@@ -5,7 +5,7 @@ import type { Repository } from "typeorm";
 import { LogEntity } from "@/core/log/entity/log";
 import type { ILogRepository } from "@/core/log/repository/log";
 import type { CreatedModel, UpdatedModel } from "@/infra/repository";
-import type { ObjectLiteral } from "@/utils/types";
+import type { ObjectLiteral } from "typeorm";
 
 import { LogSchema } from "../schemas/log";
 
@@ -17,8 +17,13 @@ export class LogRepository implements ILogRepository {
   ) {}
 
   async create(entity: LogEntity): Promise<CreatedModel> {
-    const log = await this.repository.save(entity);
-    return new LogEntity(log);
+    const logData = {
+      message: entity.message,
+      type: entity.type,
+      flowId: entity.flowId,
+    };
+    const log = await this.repository.save(logData);
+    return { id: String(log.id), created: true };
   }
 
   async find(filter: ObjectLiteral): Promise<LogEntity[]> {
@@ -40,12 +45,19 @@ export class LogRepository implements ILogRepository {
     filter: ObjectLiteral,
     entity: LogEntity,
   ): Promise<UpdatedModel> {
-    await this.repository.update(filter, entity);
-    const updated = await this.repository.findOne({ where: filter });
-    if (!updated) {
-      throw new Error("Log not found after update");
-    }
-    return new LogEntity(updated);
+    const updateData = {
+      message: entity.message,
+      type: entity.type,
+      flowId: entity.flowId,
+    };
+    const result = await this.repository.update(filter, updateData);
+    return {
+      matchedCount: result.affected || 0,
+      modifiedCount: result.affected || 0,
+      acknowledged: true,
+      upsertedId: null,
+      upsertedCount: 0,
+    };
   }
 
   async deleteOne(id: number): Promise<void> {

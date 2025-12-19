@@ -38,7 +38,7 @@ export class FlowUpdateStatusUsecase implements IUsecase {
 			updatedAt: new Date(),
 		});
 
-		const result = await this.flowRepository.updateOne(
+		await this.flowRepository.updateOne(
 			{ id: input.id },
 			updatedFlow,
 		);
@@ -53,7 +53,11 @@ export class FlowUpdateStatusUsecase implements IUsecase {
 			`flow: ${input.id} status: ${input.status}`,
 		);
 
-		return result;
+		const updated = await this.flowRepository.findOne({ id: input.id });
+		if (!updated) {
+			throw new ApiNotFoundException("flowNotFound");
+		}
+		return updated;
 	}
 }
 

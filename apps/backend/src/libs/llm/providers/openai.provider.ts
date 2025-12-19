@@ -248,7 +248,7 @@ export class OpenAIProvider implements ILLMProvider {
 			status: TaskStatus.IN_PROGRESS,
 		};
 	}
-
+	
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	private tasksToMessages(tasks: TaskEntity[], prompt: string): any[] {
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any

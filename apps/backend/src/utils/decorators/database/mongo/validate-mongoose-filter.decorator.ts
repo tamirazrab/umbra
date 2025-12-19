@@ -32,7 +32,7 @@ export function ConvertMongooseFilter<T>(
 
 			const filterNameList = allowedFilterList.map((f) => f.name as string);
 
-			Object.keys(input.search || {}).forEach((key) => {
+			Object.keys(input?.search || {}).forEach((key) => {
 				const allowed = filterNameList.includes(key);
 				if (!allowed)
 					throw new ApiBadRequestException(

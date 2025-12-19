@@ -37,6 +37,6 @@ export class UserEntity extends BaseEntity<UserEntity>() {
 
   constructor(entity: User) {
     super(UserEntitySchema);
-    Object.assign(this, this.validate(entity));
+    Object.assign(this, this.validate(entity as UserEntity));
   }
 }

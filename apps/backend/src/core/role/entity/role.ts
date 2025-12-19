@@ -32,6 +32,6 @@ export class RoleEntity extends BaseEntity<RoleEntity>() {
 
   constructor(entity: Role) {
     super(RoleEntitySchema);
-    Object.assign(this, this.validate(entity));
+    Object.assign(this, this.validate(entity as RoleEntity));
   }
 }

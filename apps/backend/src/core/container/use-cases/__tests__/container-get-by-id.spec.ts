@@ -48,7 +48,7 @@ describe(ContainerGetByIdUsecase.name, () => {
 	});
 
 	const input: ContainerGetByIdInput = {
-		id: 1,
+		id: "9269248e-54cc-46f9-80c0-7029c989c0e3",
 	};
 
 	const existingContainer = new ContainerEntity({

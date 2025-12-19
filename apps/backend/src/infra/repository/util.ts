@@ -12,7 +12,7 @@ export const validateFindByCommandsFilter = <T>(
 	);
 
 	for (const key in groupList) {
-		const commands = groupList[`${key}`].map((g) => g.command);
+		const commands = groupList[`${key}`]?.map((g) => g.command) || [];
 		const isLikeAndNotAllowedOperation = commands.filter(
 			(g) =>
 				g === DatabaseOperationEnum.CONTAINS ||
