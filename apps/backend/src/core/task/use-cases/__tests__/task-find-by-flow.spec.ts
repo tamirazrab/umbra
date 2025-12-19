@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test } from "vitest";
 import { TaskEntity, TaskStatus, TaskType } from "../../entity/task";
 import { ITaskRepository } from "../../repository/task";
 import { TaskFindByFlowUsecase } from "../task-find-by-flow";
-import { getUUID, mockResolvedValue } from "@/test/mock";
+import { getUUID, mockResolvedValue } from "test/mock";
 
 describe(TaskFindByFlowUsecase.name, () => {
 	let usecase: TaskFindByFlowUsecase;
@@ -42,7 +42,7 @@ describe(TaskFindByFlowUsecase.name, () => {
 				results: "{}",
 				message: null,
 				toolCallId: null,
-				flowId: 1,
+				flowId: "1",
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			}),
@@ -54,7 +54,7 @@ describe(TaskFindByFlowUsecase.name, () => {
 				results: "{}",
 				message: null,
 				toolCallId: null,
-				flowId: 2,
+				flowId: "2",
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			}),
@@ -62,10 +62,10 @@ describe(TaskFindByFlowUsecase.name, () => {
 
 		repository.find = mockResolvedValue(tasks);
 
-		const result = await usecase.execute({ flowId: 1 });
+		const result = await usecase.execute({ flowId: "1" });
 
 		expect(result).toHaveLength(2);
-		expect(result[0].flowId).toBe(1);
-		expect(result[1].flowId).toBe(2);
+		expect(result[0]?.flowId).toBe("1");
+		expect(result[1]?.flowId).toBe("2");
 	});
 });

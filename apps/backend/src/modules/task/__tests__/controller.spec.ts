@@ -1,11 +1,5 @@
 import { TaskEntity, TaskStatus, TaskType } from "@/core/task/entity/task";
-import {
-	getUUID,
-	mockFn,
-	mockResolvedValue,
-	mockTracing,
-	mockUser,
-} from "@/test/mock";
+
 import { Test } from "@nestjs/testing";
 import { beforeEach, describe, expect, test } from "vitest";
 import {
@@ -19,6 +13,7 @@ import {
 	ITaskUpdateStatusAdapter,
 } from "../adapter";
 import { TaskController } from "../controller";
+import { mockFn, getUUID, mockResolvedValue, mockUser, mockTracing } from "test/mock";
 
 describe(TaskController.name, () => {
 	let controller: TaskController;
@@ -111,7 +106,7 @@ describe(TaskController.name, () => {
 				results: "{}",
 				message: "List files",
 				toolCallId: "tool-123",
-				flowId: 1,
+				flowId: "1",
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			});
@@ -144,7 +139,7 @@ describe(TaskController.name, () => {
 				results: "{}",
 				message: "Updated message",
 				toolCallId: null,
-				flowId: 1,
+				flowId: "1",
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			});
@@ -206,7 +201,7 @@ describe(TaskController.name, () => {
 				results: "{}",
 				message: null,
 				toolCallId: null,
-				flowId: 1,
+				flowId: "1",
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			});
@@ -237,7 +232,7 @@ describe(TaskController.name, () => {
 					results: "{}",
 					message: null,
 					toolCallId: null,
-					flowId: 1,
+					flowId: "1",
 					createdAt: new Date(),
 					updatedAt: new Date(),
 				}),
@@ -286,7 +281,7 @@ describe(TaskController.name, () => {
 				results: "{}",
 				message: null,
 				toolCallId: null,
-				flowId: 1,
+				flowId: "1",
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			});
@@ -321,7 +316,7 @@ describe(TaskController.name, () => {
 				results: "output here",
 				message: null,
 				toolCallId: null,
-				flowId: 1,
+				flowId: "1",
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			});

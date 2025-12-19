@@ -27,7 +27,7 @@ export const SortHttpSchema = z
 				.split(",")
 				.every((s) => {
 					const [order] = s.split(":").reverse();
-					return ["asc", "desc"].includes(order.trim().toLowerCase() || "asc");
+					return ["asc", "desc"].includes(order?.trim().toLowerCase() || "asc");
 				});
 		},
 		{
@@ -43,9 +43,9 @@ export const SortHttpSchema = z
 				.map((s) => {
 					const [field, order] = s.split(":");
 					const sorted = [
-						field.trim(),
+						field?.trim(),
 						SortEnum[
-							(order.trim().toLowerCase() || "asc") as keyof typeof SortEnum
+							(order?.trim().toLowerCase() || "asc") as keyof typeof SortEnum
 						],
 					];
 					return sorted;

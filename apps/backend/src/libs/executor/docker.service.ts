@@ -112,6 +112,11 @@ export class DockerService implements OnModuleInit {
                 return;
               }
 
+              if (!stream) {
+                reject(new Error("Failed to get pull stream"));
+                return;
+              }
+
               this.docker?.modem.followProgress(stream, (err) => {
                 if (err) {
                   reject(err);
@@ -133,7 +138,7 @@ export class DockerService implements OnModuleInit {
       const containerConfig: ContainerCreateOptions = {
         Image: options.image,
         Cmd: cmd || ["tail", "-f", "/dev/null"],
-        ExposedPorts: exposedPorts || {},
+        ExposedPorts: (exposedPorts as Record<string, {}>) || {},
         HostConfig: {
           PortBindings: portBindings || {},
         },
@@ -332,11 +337,12 @@ export class DockerService implements OnModuleInit {
       filters: { name: [containerName] },
     });
 
-    if (containers.length === 0) {
+    const containerInfo = containers[0];
+    if (!containerInfo || !containerInfo.Id) {
       throw new Error(`Container ${containerName} not found`);
     }
 
-    const container = this.docker.getContainer(containers[0].Id);
+    const container = this.docker.getContainer(containerInfo.Id);
 
     // Create exec instance
     const exec = await container.exec({
@@ -364,13 +370,13 @@ export class DockerService implements OnModuleInit {
     // Inspect exec to ensure it completed
     const execInspect = await exec.inspect();
     if (execInspect.ExitCode !== 0 && execInspect.ExitCode !== null) {
-      const output = Buffer.concat(chunks).toString();
+      const output = Buffer.concat(chunks as unknown as Uint8Array[]).toString();
       throw new Error(
         `Command failed with exit code ${execInspect.ExitCode}: ${output}`,
       );
     }
 
-    const result = Buffer.concat(chunks).toString();
+    const result = Buffer.concat(chunks as unknown as Uint8Array[]).toString();
 
     // Log output
     await this.logCreateUsecase.execute(
@@ -422,11 +428,12 @@ export class DockerService implements OnModuleInit {
       filters: { name: [containerName] },
     });
 
-    if (containers.length === 0) {
+    const containerInfo = containers[0];
+    if (!containerInfo || !containerInfo.Id) {
       throw new Error(`Container ${containerName} not found`);
     }
 
-    const container = this.docker.getContainer(containers[0].Id);
+    const container = this.docker.getContainer(containerInfo.Id);
 
     // Create tar archive
     const pack = tar.pack();
@@ -490,11 +497,12 @@ export class DockerService implements OnModuleInit {
       filters: { name: [containerName] },
     });
 
-    if (containers.length === 0) {
+    const containerInfo = containers[0];
+    if (!containerInfo || !containerInfo.Id) {
       throw new Error(`Container ${containerName} not found`);
     }
 
-    const container = this.docker.getContainer(containers[0].Id);
+    const container = this.docker.getContainer(containerInfo.Id);
 
     // Create exec instance to read file
     const exec = await container.exec({
@@ -518,7 +526,7 @@ export class DockerService implements OnModuleInit {
       stream.on("error", reject);
     });
 
-    const result = Buffer.concat(chunks).toString();
+    const result = Buffer.concat(chunks as unknown as Uint8Array[]).toString();
 
     // Log output
     await this.logCreateUsecase.execute(

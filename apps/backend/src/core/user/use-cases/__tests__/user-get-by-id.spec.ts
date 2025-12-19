@@ -10,7 +10,7 @@ import { IUserRepository } from '../../repository/user';
 import { UserGetByIdInput, UserGetByIdUsecase } from '../user-get-by-id';
 
 import { beforeEach, describe, expect, test } from "vitest";
-import { expectZodError, mockResolvedValue, getUUID, nameOf } from '@/test/mock';
+import { expectZodError, nameOf, mockResolvedValue, getUUID } from 'test/mock';
 
 describe(UserGetByIdUsecase.name, () => {
   let usecase: IUserGetByIdAdapter;

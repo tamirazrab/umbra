@@ -145,7 +145,7 @@ export class TaskController {
 	@Permission("task:getbyid")
 	async getById(@Req() { params }: ApiRequest): Promise<TaskGetByIdOutput> {
 		return await this.getByIdUsecase.execute({
-			id: Number(params.id),
+			id: String(params.id),
 		} as TaskGetByIdInput);
 	}
 
@@ -156,7 +156,7 @@ export class TaskController {
 		@Req() { params }: ApiRequest,
 	): Promise<TaskFindByFlowOutput> {
 		return await this.findByFlowUsecase.execute({
-			flowId: Number(params.flowId),
+			flowId: String(params.flowId),
 		} as TaskFindByFlowInput);
 	}
 
@@ -167,7 +167,7 @@ export class TaskController {
 		@Req() { params, user, tracing }: ApiRequest,
 	): Promise<TaskDeleteOutput> {
 		return await this.deleteUsecase.execute(
-			{ id: Number(params.id) } as TaskDeleteInput,
+			{ id: String(params.id) } as TaskDeleteInput,
 			{ user, tracing },
 		);
 	}

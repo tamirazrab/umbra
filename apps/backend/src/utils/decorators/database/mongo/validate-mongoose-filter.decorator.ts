@@ -110,7 +110,7 @@ export function ConvertMongooseFilter<T>(
 				delete where.$and;
 			}
 
-			args[0].search = where;
+			args[0]!.search = where;
 			const result = originalMethod.apply(this, args);
 			return result;
 		};

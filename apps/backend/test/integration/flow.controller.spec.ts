@@ -1,9 +1,10 @@
 import { FlowCreateInput } from "@/core/flow/use-cases/flow-create";
 import { INestApplication, ValidationPipe } from "@nestjs/common";
 import { Test, TestingModule } from "@nestjs/testing";
-import * as request from "supertest";
+import request from "supertest";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { AppModule } from "../../src/app.module";
+import { FlowStatus } from "@umbra/types";
 
 const describeIfDocker =
   process.env.SKIP_DOCKER_TESTS === "true" ? describe.skip : describe;
@@ -29,7 +30,7 @@ describeIfDocker("FlowController (Integration)", () => {
     it("should create a flow with valid input", async () => {
       const input: FlowCreateInput = {
         modelProvider: "openai",
-        modelId: "gpt-4",
+        model: "gpt-4",
       };
 
       const response = await request(app.getHttpServer())
@@ -39,14 +40,14 @@ describeIfDocker("FlowController (Integration)", () => {
 
       expect(response.body).toHaveProperty("id");
       expect(response.body.model.provider).toBe(input.modelProvider);
-      expect(response.body.model.id).toBe(input.modelId);
-      expect(response.body.status).toBe("in_progress");
+      expect(response.body.model.id).toBe(input.model);
+      expect(response.body.status).toBe(FlowStatus.InProgress);
     });
 
     it("should fail with invalid input", async () => {
       const input = {
         modelProvider: "", // Invalid
-        modelId: "gpt-4",
+        model: "gpt-4",
       };
 
       await request(app.getHttpServer()).post("/flows").send(input).expect(400);

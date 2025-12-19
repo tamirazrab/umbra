@@ -9,7 +9,7 @@ import { IUserRepository } from '../../repository/user';
 import { UserListInput, UserListOutput, UserListUsecase } from '../user-list';
 
 import { beforeEach, describe, expect, test } from "vitest";
-import { expectZodError, nameOf, getUUID, getDate, mockResolvedValue } from '@/test/mock';
+import { expectZodError, nameOf, getUUID, getDate, mockResolvedValue } from 'test/mock';
 
 describe(UserListUsecase.name, () => {
   let usecase: IUserListAdapter;

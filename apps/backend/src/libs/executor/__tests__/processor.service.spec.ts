@@ -24,6 +24,7 @@ import { ProcessorService } from "../processor.service";
 import { QueueService } from "../queue.service";
 // biome-ignore lint/style/useImportType: used as Nest DI tokens
 import { TerminalService } from "../terminal.service";
+import { FlowId } from "@/utils/types";
 
 describe(ProcessorService.name, () => {
   let service: ProcessorService;

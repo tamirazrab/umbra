@@ -7,8 +7,8 @@ import { ILogoutAdapter } from '@/modules/logout/adapter';
 import { ZodExceptionIssue } from '@/utils/validator';
 
 import { LogoutInput, LogoutUsecase } from '../user-logout';
-import { mockResolvedValue, expectZodError, mockTracing } from '@/test/mock';
 import { beforeEach, test, expect, describe } from 'vitest';
+import { mockResolvedValue, expectZodError, mockTracing, nameOf } from 'test/mock';
 
 describe(LogoutUsecase.name, () => {
   let usecase: ILogoutAdapter;

@@ -16,7 +16,7 @@ import {
   UserRefreshTokenVerifyInput
 } from '../user-refresh-token';
 import { beforeEach, test, expect, describe } from 'vitest';
-import { mockResolvedValue, expectZodError, nameOf, mockImplementation, getUUID, mockReturnValue } from '@/test/mock';
+import { mockResolvedValue, expectZodError, nameOf, mockImplementation, getUUID, mockReturnValue } from 'test/mock';
 
 describe(RefreshTokenUsecase.name, () => {
   let usecase: IRefreshTokenAdapter;

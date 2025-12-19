@@ -119,7 +119,7 @@ export class ContainerController {
 		@Req() { params }: ApiRequest,
 	): Promise<ContainerGetByIdOutput> {
 		return await this.getByIdUsecase.execute({
-			id: Number(params.id),
+			id: String(params.id),
 		} as ContainerGetByIdInput);
 	}
 
@@ -130,7 +130,7 @@ export class ContainerController {
 		@Req() { params, user, tracing }: ApiRequest,
 	): Promise<ContainerDeleteOutput> {
 		return await this.deleteUsecase.execute(
-			{ id: Number(params.id) } as ContainerDeleteInput,
+			{ id: String(params.id) } as ContainerDeleteInput,
 			{ user, tracing },
 		);
 	}

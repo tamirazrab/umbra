@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test } from "vitest";
 import { TaskEntity, TaskStatus, TaskType } from "../../entity/task";
 import { ITaskRepository } from "../../repository/task";
 import { type TaskListInput, TaskListUsecase } from "../task-list";
-import { getUUID, mockResolvedValue } from "@/test/mock";
+import { getUUID, mockResolvedValue } from "test/mock";
 
 describe(TaskListUsecase.name, () => {
 	let usecase: TaskListUsecase;
@@ -42,7 +42,7 @@ describe(TaskListUsecase.name, () => {
 				results: "{}",
 				message: null,
 				toolCallId: null,
-				flowId: 1,
+				flowId: "1",
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			}),

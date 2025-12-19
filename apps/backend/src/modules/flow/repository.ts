@@ -46,8 +46,8 @@ export class FlowRepository
 		const [docs, total] = await this.repository.findAndCount({
 			take: input.limit,
 			skip,
-			order: input.sort as FindOptionsOrder<IEntity>,
-			where: input.search as FindOptionsWhere<IEntity>,
+			order: input.sort as FindOptionsOrder<Model>,
+			where: input.search as FindOptionsWhere<Model>,
 		});
 
 		return { docs, total, page: input.page, limit: input.limit };

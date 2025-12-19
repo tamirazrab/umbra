@@ -2,12 +2,7 @@ import { RoleEntity, RoleEnum } from "@/core/role/entity/role";
 import { LoggerModule } from "@/infra/logger";
 import type { CreatedModel } from "@/infra/repository";
 import { IUserChangePasswordAdapter } from "@/modules/user/adapter";
-import {
-  expectZodError,
-  getUUID,
-  mockResolvedValue,
-  nameOf,
-} from "@/test/mock";
+
 import {
   ApiBadRequestException,
   ApiNotFoundException,
@@ -22,6 +17,7 @@ import {
   type UserChangePasswordInput,
   UserChangePasswordUsecase,
 } from "../user-change-password";
+import { expectZodError, nameOf, getUUID, mockResolvedValue } from "test/mock";
 
 describe(UserChangePasswordUsecase.name, () => {
   let usecase: IUserChangePasswordAdapter;

@@ -1,4 +1,3 @@
-import { expectZodError, getUUID, mockResolvedValue, nameOf } from "@/test/mock";
 import { Test } from "@nestjs/testing";
 import { beforeEach, describe, expect, test } from "vitest";
 
@@ -8,6 +7,7 @@ import type { ZodExceptionIssue } from "@/utils/validator";
 import { TaskEntity, TaskStatus, TaskType } from "../../entity/task";
 import { ITaskRepository } from "../../repository/task";
 import { type TaskGetByIdInput, TaskGetByIdUsecase } from "../task-get-by-id";
+import { expectZodError, nameOf, mockResolvedValue, getUUID } from "test/mock";
 
 describe(TaskGetByIdUsecase.name, () => {
 	let usecase: TaskGetByIdUsecase;
@@ -66,7 +66,7 @@ describe(TaskGetByIdUsecase.name, () => {
 			results: "/home/user",
 			message: "Get working directory",
 			toolCallId: "tool-456",
-			flowId: 1,
+			flowId: "1",
 			createdAt: new Date(),
 			updatedAt: new Date(),
 		});

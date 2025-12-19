@@ -2,9 +2,9 @@ import { Test } from "@nestjs/testing";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 // biome-ignore lint/style/useImportType: used as Nest DI tokens
 import { LogType } from "@/core/log/entity/log";
-import type { IEventAdapter } from "@/libs/event/adapter";
+import { IEventAdapter } from "@/libs/event/adapter";
 import { EventNameEnum } from "@/libs/event/types";
-import type { ILogCreateAdapter } from "@/modules/log/adapter";
+import { ILogCreateAdapter } from "@/modules/log/adapter";
 import { mockFn, mockTracing } from "../../../../test/mock";
 import { BrowserService } from "../browser.service";
 

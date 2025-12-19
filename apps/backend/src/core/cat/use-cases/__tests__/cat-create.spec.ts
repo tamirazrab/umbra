@@ -8,14 +8,9 @@ import { ZodExceptionIssue } from "@/utils/validator";
 import { CatEntity } from "../../entity/cat";
 import { ICatRepository } from "../../repository/cat";
 import { CatCreateInput, CatCreateUsecase } from "../cat-create";
-import {
-  expectZodError,
-  mockTracing,
-  getUUID,
-  mockResolvedValue,
-  mockRejectedValue,
-} from "@/test/mock";
-import { describe, beforeEach, test, expect } from "vitest";
+
+import { expectZodError, getUUID, mockRejectedValue, mockResolvedValue, mockTracing, nameOf } from "test/mock";
+import { beforeEach, describe, expect, test } from "vitest";
 
 describe(CatCreateUsecase.name, () => {
   let usecase: ICatCreateAdapter;

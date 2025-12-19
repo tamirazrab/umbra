@@ -29,7 +29,7 @@ describeIfDocker('TaskController (Integration)', () => {
   describe('POST /tasks', () => {
     it('should create a task with valid input', async () => {
       const input: TaskCreateInput = {
-        flowId: 1,
+        flowId: '1',
         type: 'ask',
         message: 'Test task',
       };

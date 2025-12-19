@@ -12,7 +12,7 @@ import { beforeEach, describe, expect, test } from "vitest";
 import { UserEntity } from "../../entity/user";
 import { IUserRepository } from "../../repository/user";
 import { type LoginInput, type LoginOutput, LoginUsecase } from "../user-login";
-import { expectZodError, mockTracing, nameOf, mockResolvedValue, getUUID } from "@/test/mock";
+import { expectZodError, mockTracing, nameOf, mockResolvedValue, getUUID } from "test/mock";
 
 describe(LoginUsecase.name, () => {
   let usecase: ILoginAdapter;

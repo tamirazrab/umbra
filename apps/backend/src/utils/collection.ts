@@ -29,8 +29,8 @@ export class CollectionUtil {
 			throw new ApiInternalServerException("key is required");
 		}
 
-		return collection.reduce((prev, current) => {
-			const prevValue = prev[key];
+		return collection.reduce<T>((prev, current) => {
+			const prevValue = prev?.[key];
 			const currentValue = current[key];
 
 			if (typeof prevValue !== "number" || typeof currentValue !== "number") {
@@ -40,7 +40,7 @@ export class CollectionUtil {
 			}
 
 			return prevValue > currentValue ? prev : current;
-		}, collection[0]);
+		}, collection[0] as T);
 	}
 
 	static max(collection: (string | number)[]): number {
@@ -55,8 +55,8 @@ export class CollectionUtil {
 			return null;
 		}
 
-		return collection.reduce((prev, current) => {
-			const prevValue = prev[key];
+		return collection.reduce<T>((prev, current) => {
+			const prevValue = prev?.[key];
 			const currentValue = current[key];
 
 			if (typeof prevValue !== "number" || typeof currentValue !== "number") {
@@ -66,7 +66,7 @@ export class CollectionUtil {
 			}
 
 			return prevValue < currentValue ? prev : current;
-		}, collection[0]) as T;
+		}, collection[0] as T);
 	}
 
 	static min(collection: (string | number)[]): number {

@@ -2,11 +2,11 @@ import { Test } from "@nestjs/testing";
 import { beforeEach, describe, expect, test, vi } from "vitest";
 
 import { ILoggerAdapter } from "@/infra/logger";
-import { getUUID, mockFn, mockResolvedValue, mockTracing } from "@/test/mock";
 import { ApiNotFoundException } from "@/utils/exception";
 import { TaskEntity, TaskStatus, TaskType } from "../../entity/task";
 import { ITaskRepository } from "../../repository/task";
 import { TaskUpdateResultsUsecase } from "../task-update-results";
+import { getUUID, mockFn, mockResolvedValue, mockTracing } from "test/mock";
 
 describe(TaskUpdateResultsUsecase.name, () => {
 	let usecase: TaskUpdateResultsUsecase;
@@ -62,7 +62,7 @@ describe(TaskUpdateResultsUsecase.name, () => {
 			results: "{}",
 			message: null,
 			toolCallId: null,
-			flowId: 1,
+			flowId: "1",
 			createdAt: new Date(),
 			updatedAt: new Date(),
 		});

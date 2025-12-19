@@ -8,7 +8,7 @@ const Type = InputValidator.enum([
 	"browser",
 	"code",
 	"ask",
-	"done",
+	"done"
 ]).nullish();
 const Status = InputValidator.enum([
 	"in_progress",

@@ -144,11 +144,11 @@ export class ExceptionHandlerFilter implements AppExceptionFilter {
 		if (exception instanceof ZodError) {
 			return ApiBadRequestException.STATUS;
 		}
-
+	
 		if (exception instanceof HttpException) {
 			return exception.getStatus();
 		}
-
-		return exception.status || ApiInternalServerException.STATUS;
+		
+		return (exception as BaseException).statusCode || ApiInternalServerException.STATUS;
 	}
 }

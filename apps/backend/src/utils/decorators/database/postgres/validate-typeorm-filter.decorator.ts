@@ -29,7 +29,7 @@ export function ConvertTypeOrmFilter<T>(
 
 			const filterNameList = allowedFilterList.map((f) => f.name as string);
 
-			Object.keys(input.search || {}).forEach((key) => {
+			Object.keys(input?.search || {}).forEach((key) => {
 				const allowed = filterNameList.includes(key);
 				if (!allowed)
 					throw new ApiBadRequestException(
@@ -41,9 +41,9 @@ export function ConvertTypeOrmFilter<T>(
 			const IS_SINGLE_FILTER = "string";
 
 			for (const allowedFilter of allowedFilterList) {
-				if (!input.search) continue;
+				if (!input?.search) continue;
 
-				const filters = input.search[allowedFilter.name.toString()];
+				const filters = input?.search[allowedFilter.name.toString()];
 
 				if (!filters) continue;
 
@@ -101,7 +101,7 @@ export function ConvertTypeOrmFilter<T>(
 					}
 				}
 			}
-			args[0].search = where;
+			args[0]!.search = where;
 			const result = originalMethod.apply(this, args);
 			return result;
 		};

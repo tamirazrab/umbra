@@ -27,7 +27,7 @@ export function ValidateDatabaseSortAllowed<T>(
 
 			const sortList = (allowedSortList || []) as AllowedSort<T>[];
 
-			Object.keys(input.sort || {}).forEach((key) => {
+			Object.keys(input?.sort || {}).forEach((key) => {
 				const allowed = sortList.find((s) => s.name === key);
 
 				if (!allowed)
@@ -37,15 +37,15 @@ export function ValidateDatabaseSortAllowed<T>(
 			});
 
 			for (const allowedFilter of sortList) {
-				if (!input.sort) continue;
-				const filter = input.sort[`${allowedFilter.name.toString()}`];
+				if (!input?.sort) continue;
+				const filter = input?.sort[`${allowedFilter.name.toString()}`];
 				if (filter) {
 					sort[`${allowedFilter?.map ?? allowedFilter.name.toString()}`] =
 						filter;
 				}
 			}
 
-			args[0].sort = sort;
+			args[0]!.sort = sort;
 			const result = originalMethod.apply(this, args);
 			return result;
 		};

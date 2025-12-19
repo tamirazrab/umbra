@@ -10,7 +10,7 @@ import { IUserRepository } from '../../repository/user';
 import { UserDeleteInput, UserDeleteUsecase } from '../user-delete';
 
 import { beforeEach, describe, expect, test } from "vitest";
-import { expectZodError, mockTracing, mockResolvedValue, getUUID, nameOf } from '@/test/mock';
+import { expectZodError, mockTracing, nameOf, mockResolvedValue, getUUID } from 'test/mock';
 
 describe(UserDeleteUsecase.name, () => {
   let usecase: IUserDeleteAdapter;

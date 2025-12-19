@@ -85,7 +85,7 @@ export class FlowController {
 		@Req() { body, user, tracing, params }: ApiRequest,
 	): Promise<FlowUpdateOutput> {
 		return this.updateUsecase.execute(
-			{ ...body, id: Number(params.id) } as FlowUpdateInput,
+			{ ...body, id: String(params.id) } as FlowUpdateInput,
 			{ user, tracing },
 		);
 	}
@@ -97,7 +97,7 @@ export class FlowController {
 		@Req() { body, user, tracing, params }: ApiRequest,
 	): Promise<FlowUpdateStatusOutput> {
 		return this.updateStatusUsecase.execute(
-			{ id: Number(params.id), ...body } as FlowUpdateStatusInput,
+			{ id: String(params.id), ...body } as FlowUpdateStatusInput,
 			{
 				user,
 				tracing,
@@ -112,7 +112,7 @@ export class FlowController {
 		@Req() { user, tracing, params }: ApiRequest,
 	): Promise<FlowFinishOutput> {
 		return this.finishUsecase.execute(
-			{ id: Number(params.id) } as FlowFinishInput,
+			{ id: String(params.id) } as FlowFinishInput,
 			{ user, tracing },
 		);
 	}
@@ -136,7 +136,7 @@ export class FlowController {
 	@Permission("flow:getbyid")
 	async getById(@Req() { params }: ApiRequest): Promise<FlowGetByIdOutput> {
 		return await this.getByIdUsecase.execute({
-			id: Number(params.id),
+			id: String(params.id),
 		} as FlowGetByIdInput);
 	}
 
@@ -147,7 +147,7 @@ export class FlowController {
 		@Req() { params, user, tracing }: ApiRequest,
 	): Promise<FlowDeleteOutput> {
 		return await this.deleteUsecase.execute(
-			{ id: Number(params.id) } as FlowDeleteInput,
+			{ id: String(params.id) } as FlowDeleteInput,
 			{ user, tracing },
 		);
 	}

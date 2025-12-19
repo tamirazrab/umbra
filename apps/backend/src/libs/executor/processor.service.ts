@@ -124,7 +124,7 @@ export class ProcessorService {
 	}
 
 	private async processTask(
-		task: TaskEntity & { flowId?: FlowId | null },
+		task: TaskEntity,
 		flowId: FlowId,
 		tracing: ApiTracingInput,
 	): Promise<void> {
@@ -466,7 +466,7 @@ export class ProcessorService {
 		}
 
 		const nextTaskData = await this.llmProvider.nextTask({
-			tasks: truncatedTasks,
+			tasks: truncatedTasks as TaskEntity[],
 			dockerImage,
 		});
 

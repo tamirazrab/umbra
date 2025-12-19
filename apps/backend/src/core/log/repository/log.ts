@@ -1,7 +1,7 @@
 import type { CreatedModel, UpdatedModel } from "@/infra/repository";
-import type { ObjectLiteral } from "@/utils/types";
 
 import type { LogEntity } from "../entity/log";
+import { ObjectLiteral } from "typeorm";
 
 export abstract class ILogRepository {
   abstract create(entity: LogEntity): Promise<CreatedModel>;

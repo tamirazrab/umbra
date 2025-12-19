@@ -35,11 +35,11 @@ export class HealthController {
 		const cpu = {
 			cpus: numCpus,
 			globalAvarage: {
-				lastMinute: this.service.getLoadAvarage(lastMinute, numCpus),
-				lastFiveMinutes: this.service.getLoadAvarage(lastFiveMinutes, numCpus),
+				lastMinute: this.service.getLoadAvarage(lastMinute || 0, numCpus),
+				lastFiveMinutes: this.service.getLoadAvarage(lastFiveMinutes || 0, numCpus),
 				lastFifteenMinutes: this.service.getLoadAvarage(
-					lastFifteenMinutes,
-					numCpus,
+					lastFifteenMinutes || 0,
+					numCpus || 0,
 				),
 			},
 			cores: cpuStatus,

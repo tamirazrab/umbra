@@ -7,7 +7,7 @@ import { ApiNotFoundException } from "@/utils/exception";
 import { TaskEntity, TaskStatus, TaskType } from "../../entity/task";
 import { ITaskRepository } from "../../repository/task";
 import { TaskDeleteUsecase } from "../task-delete";
-import { getUUID, mockFn, mockResolvedValue, mockTracing } from "@/test/mock";
+import { getUUID, mockFn, mockResolvedValue, mockTracing } from "test/mock";
 
 describe(TaskDeleteUsecase.name, () => {
 	let usecase: TaskDeleteUsecase;
@@ -63,7 +63,7 @@ describe(TaskDeleteUsecase.name, () => {
 			results: "{}",
 			message: null,
 			toolCallId: null,
-			flowId: 1,
+			flowId: "1",
 			createdAt: new Date(),
 			updatedAt: new Date(),
 		});

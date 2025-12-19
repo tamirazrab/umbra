@@ -1,19 +1,19 @@
 import { Injectable } from "@nestjs/common";
 
-import type { ContainerEntity } from "@/core/container/entity/container";
-import type { FlowEntity } from "@/core/flow/entity/flow";
-import type { TaskEntity, TaskStatus } from "@/core/task/entity/task";
-import type { TaskCreateInput } from "@/core/task/use-cases/task-create";
-import type { IExecutorRepository } from "@/libs/executor/adapter";
-import type {
+import { ContainerEntity } from "@/core/container/entity/container";
+import { FlowEntity } from "@/core/flow/entity/flow";
+import { TaskEntity, TaskStatus } from "@/core/task/entity/task";
+import { TaskCreateInput } from "@/core/task/use-cases/task-create";
+import { IExecutorRepository } from "@/libs/executor/adapter";
+import {
 	IContainerGetByIdAdapter
 } from "@/modules/container/adapter";
-import type {
+import {
 	IFlowFinishAdapter,
 	IFlowGetByIdAdapter,
 	IFlowUpdateAdapter,
 } from "@/modules/flow/adapter";
-import type {
+import {
 	ITaskCreateAdapter,
 	ITaskFindByFlowAdapter,
 	ITaskGetByIdAdapter,
@@ -21,8 +21,8 @@ import type {
 	ITaskUpdateResultsAdapter,
 	ITaskUpdateStatusAdapter,
 } from "@/modules/task/adapter";
-import type { ApiTracingInput } from "@/utils/request";
-import type { FlowId, TaskId } from "@/utils/types";
+import { ApiTracingInput } from "@/utils/request";
+import { FlowId, TaskId } from "@/utils/types";
 
 @Injectable()
 export class ExecutorRepository implements IExecutorRepository {
@@ -56,7 +56,7 @@ export class ExecutorRepository implements IExecutorRepository {
 		const result = await this.taskFindByFlowUsecase.execute({
 			flowId: Number(flowId),
 		});
-		return result.tasks || result;
+		return result;
 	}
 
 	async createTask(
@@ -77,7 +77,7 @@ export class ExecutorRepository implements IExecutorRepository {
 		// Convert if needed
 		const taskId = typeof id === "string" ? Number(id) || 0 : id;
 		await this.taskUpdateStatusUsecase.execute(
-			{ id: taskId, status: status as string },
+			{ id: taskId, status },
 			tracing,
 		);
 	}

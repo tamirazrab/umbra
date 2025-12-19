@@ -3,4 +3,5 @@ export enum EventNameEnum {
 	TERMINAL_OUTPUT = "terminal.output",
 	FLOW_UPDATE = "flow.update",
 	TASK_UPDATE = "task.update",
+	BROWSER_UPDATE = "browser.update",
 }

@@ -8,7 +8,7 @@ import { beforeEach, describe, expect, test } from "vitest";
 import { CatEntity } from "../../entity/cat";
 import { ICatRepository } from "../../repository/cat";
 import { type CatUpdateInput, CatUpdateUsecase } from "../cat-update";
-import { expectZodError, mockTracing, nameOf, mockResolvedValue, getUUID } from "@/test/mock";
+import { expectZodError, mockTracing, nameOf, mockResolvedValue, getUUID } from "test/mock";
 
 describe(CatUpdateUsecase.name, () => {
   let usecase: ICatUpdateAdapter;

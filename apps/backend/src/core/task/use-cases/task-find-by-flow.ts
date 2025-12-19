@@ -6,7 +6,7 @@ import type { TaskEntity } from "../entity/task";
 import type { ITaskRepository } from "../repository/task";
 
 export const TaskFindByFlowSchema = InputValidator.object({
-	flowId: InputValidator.number().int().positive(),
+	flowId: InputValidator.string(),
 });
 
 export class TaskFindByFlowUsecase implements IUsecase {
