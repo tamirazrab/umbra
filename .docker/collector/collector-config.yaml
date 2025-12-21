@@ -12,7 +12,7 @@ receivers:
 
 exporters:
   zipkin:
-    endpoint: 'http://zipkin-all-in-one:9411/api/v2/spans' # Endpoint para exportação de traces para o Zipkin
+    endpoint: 'http://zipkin:9411/api/v2/spans' # Endpoint para exportação de traces para o Zipkin
   prometheus:
     endpoint: '0.0.0.0:9464' # Endpoint para exportação de métricas para o Prometheus
   loki:
@@ -26,7 +26,7 @@ processors:
   attributes:
     actions:
       - key: service.name
-        value: 'nestjs-boilerplate-microservice-api' # Define o nome do serviço nos logs
+        value: 'umbra-backend' # Define o nome do serviço nos logs
         action: insert # Ação para inserir o atributo nos logs
 
 service:

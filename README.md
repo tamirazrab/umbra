@@ -24,9 +24,26 @@ In this microservice I used the best architecture concepts: Onion Architecture, 
   ```
   $ yarn
   ```
-- infra
-  ```
+- infra (start all required services: PostgreSQL, MongoDB, Redis, Zipkin, Prometheus, Grafana, etc.)
+  ```bash
    $ yarn infra
+   ```
+  
+  For detailed setup instructions, see [LOCAL_DEVELOPMENT_SETUP.md](./LOCAL_DEVELOPMENT_SETUP.md)
+  
+  Quick start:
+  ```bash
+  # Copy environment file
+  $ cp env.example .env
+  
+  # Start all services
+  $ yarn infra
+  
+  # View logs
+  $ yarn infra:logs
+  
+  # Stop services
+  $ yarn infra:down
   ```
 - running
 

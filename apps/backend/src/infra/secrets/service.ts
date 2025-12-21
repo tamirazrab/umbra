@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import  { ConfigService } from "@nestjs/config";
+import { ConfigService } from "@nestjs/config";
 
-import  { ISecretsAdapter } from "./adapter";
+import { ISecretsAdapter } from "./adapter";
 import { EnvEnum } from "./types";
 
 @Injectable()
@@ -10,7 +10,7 @@ export class SecretsService implements ISecretsAdapter {
 
 	IS_LOCAL = this.config.get<EnvEnum>("NODE_ENV") === EnvEnum.LOCAL;
 
-	IS_PRODUCTION = this.config.get<EnvEnum>("NODE_ENV") === EnvEnum.PRD;
+	IS_PRODUCTION = this.config.get<EnvEnum>("NODE_ENV") === EnvEnum.PROD;
 
 	ENV = this.config.get<EnvEnum>("NODE_ENV") as string;
 

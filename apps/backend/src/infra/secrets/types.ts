@@ -3,5 +3,5 @@ export enum EnvEnum {
 	TEST = "test",
 	DEV = "dev",
 	HML = "hml",
-	PRD = "prod",
+	PROD = "prod",
 }
