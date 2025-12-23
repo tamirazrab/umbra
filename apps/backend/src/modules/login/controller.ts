@@ -1,18 +1,18 @@
 import { Controller, Get, Post, Req, Res, Version } from "@nestjs/common";
-import type { Request, Response } from "express";
+import  { Request, Response } from "express";
 
-import type { IUserRepository } from "@/core/user/repository/user";
-import type { LoginInput, LoginOutput } from "@/core/user/use-cases/user-login";
-import type {
+import { IUserRepository } from "@/core/user/repository/user";
+import { LoginInput, LoginOutput } from "@/core/user/use-cases/user-login";
+import {
 	RefreshTokenInput,
 	RefreshTokenOutput,
 } from "@/core/user/use-cases/user-refresh-token";
-import type { IHttpAdapter } from "@/infra/http";
-import type { ISecretsAdapter } from "@/infra/secrets";
-import type { ITokenAdapter } from "@/libs/token";
-import type { ApiRequest } from "@/utils/request";
+import  { IHttpAdapter } from "@/infra/http";
+import  { ISecretsAdapter } from "@/infra/secrets";
+import  { ITokenAdapter } from "@/libs/token";
+import  { ApiRequest } from "@/utils/request";
 
-import type { ILoginAdapter, IRefreshTokenAdapter } from "./adapter";
+import  { ILoginAdapter, IRefreshTokenAdapter } from "./adapter";
 
 @Controller()
 export class LoginController {
@@ -42,7 +42,7 @@ export class LoginController {
 	@Get("login/google")
 	@Version("1")
 	loginGoogle(@Res() res: Response): void {
-		const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${this.secret.AUTH.GOOGLE.CLIENT_ID}&redirect_uri=${this.secret.AUTH.GOOGLE.REDIRECT_URL}&response_type=code&scope=profile email`;
+		const url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${this.secret.AUTH.GOOGLE.CLIENT_ID}&redirect_uri=${this.secret.AUTH.GOOGLE.REDIRECT_URL}&response_=code&scope=profile email`;
 		res.redirect(url);
 	}
 
@@ -59,7 +59,7 @@ export class LoginController {
 			client_secret: this.secret.AUTH.GOOGLE.CLIENT_SECRET,
 			code,
 			redirect_uri: this.secret.AUTH.GOOGLE.REDIRECT_URL,
-			grant_type: "authorization_code",
+			grant_: "authorization_code",
 		});
 
 		const { access_token } = data;

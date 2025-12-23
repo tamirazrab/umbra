@@ -10,23 +10,23 @@ import {
 } from "@nestjs/common";
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiTags } from "@nestjs/swagger";
 
-import type {
+import {
   LogCreateInput,
   LogCreateOutput,
 } from "@/core/log/use-cases/log-create";
-import type {
+import {
   LogDeleteOutput
 } from "@/core/log/use-cases/log-delete";
-import type {
+import {
   LogGetByIdOutput
 } from "@/core/log/use-cases/log-get-by-id";
-import type {
+import {
   LogListInput,
   LogListOutput,
 } from "@/core/log/use-cases/log-list";
-import type { ApiRequest } from "@/utils/request";
+import { ApiRequest } from "@/utils/request";
 
-import type {
+import {
   ILogCreateAdapter,
   ILogDeleteAdapter,
   ILogGetByIdAdapter,

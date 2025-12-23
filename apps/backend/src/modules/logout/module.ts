@@ -1,7 +1,7 @@
 import {
-	type MiddlewareConsumer,
+	MiddlewareConsumer,
 	Module,
-	type NestModule,
+	NestModule,
 } from "@nestjs/common";
 
 import { LogoutUsecase } from "@/core/user/use-cases/user-logout";

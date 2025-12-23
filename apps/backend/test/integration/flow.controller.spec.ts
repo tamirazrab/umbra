@@ -4,7 +4,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import request from "supertest";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { AppModule } from "../../src/app.module";
-import { FlowStatus } from "@umbra/types";
+import { FlowStatus } from "@/core/flow/entity/flow";
 
 const describeIfDocker =
   process.env.SKIP_DOCKER_TESTS === "true" ? describe.skip : describe;
@@ -41,7 +41,7 @@ describeIfDocker("FlowController (Integration)", () => {
       expect(response.body).toHaveProperty("id");
       expect(response.body.model.provider).toBe(input.modelProvider);
       expect(response.body.model.id).toBe(input.model);
-      expect(response.body.status).toBe(FlowStatus.InProgress);
+      expect(response.body.status).toBe(FlowStatus.IN_PROGRESS);
     });
 
     it("should fail with invalid input", async () => {

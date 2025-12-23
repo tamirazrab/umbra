@@ -1,13 +1,13 @@
 import { Controller, HttpCode, Post, Req, Version } from "@nestjs/common";
 
-import type {
+import {
 	LogoutInput,
 	LogoutOutput,
 } from "@/core/user/use-cases/user-logout";
 import { Permission } from "@/utils/decorators";
-import type { ApiRequest } from "@/utils/request";
+import { ApiRequest } from "@/utils/request";
 
-import type { ILogoutAdapter } from "./adapter";
+import { ILogoutAdapter } from "./adapter";
 
 @Controller()
 export class LogoutController {

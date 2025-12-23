@@ -1,12 +1,12 @@
 import {
-	type MiddlewareConsumer,
+	MiddlewareConsumer,
 	Module,
-	type NestModule,
+	NestModule,
 } from "@nestjs/common";
 import { getRepositoryToken, TypeOrmModule } from "@nestjs/typeorm";
-import type { Repository } from "typeorm";
+import { Repository } from "typeorm";
 
-import type { ContainerEntity } from "@/core/container/entity/container";
+import { ContainerEntity } from "@/core/container/entity/container";
 import { IContainerRepository } from "@/core/container/repository/container";
 import { ContainerCreateUsecase } from "@/core/container/use-cases/container-create";
 import { ContainerDeleteUsecase } from "@/core/container/use-cases/container-delete";
